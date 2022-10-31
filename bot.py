@@ -1,5 +1,7 @@
 import asyncio
+from datetime import datetime
 import logging
+from re import U
 
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
@@ -11,13 +13,17 @@ from tgbot.handlers.admin import register_admin
 from tgbot.handlers.echo import register_echo
 from tgbot.handlers.user import register_user
 from tgbot.middlewares.environment import EnvironmentMiddleware
+from tgbot.middlewares.check_sub import CheckSubscriptionMiddleware
+from tgbot.misc.db import db
 
+import random
+from datetime import datetime
 logger = logging.getLogger(__name__)
 
 
 def register_all_middlewares(dp, config):
     dp.setup_middleware(EnvironmentMiddleware(config=config))
-
+    dp.setup_middleware(CheckSubscriptionMiddleware())
 
 def register_all_filters(dp):
     dp.filters_factory.bind(AdminFilter)
@@ -44,9 +50,24 @@ async def main():
 
     bot['config'] = config
 
+    # create db
+    await db.create()
+
     register_all_middlewares(dp, config)
     register_all_filters(dp)
     register_all_handlers(dp)
+
+    # full_name = ["name", "surname", "middle-name"]
+
+    # for i in range(100):
+    #     await db.add_user(
+    #             id=random.randint(100000, 99999999),
+    #             full_name=random.choice(full_name),
+    #             phone_number=None,
+    #             username=None,
+    #             score=random.randint(100, 9999),
+    #             joined_date=datetime.now()
+    #         )
 
     # start
     try:

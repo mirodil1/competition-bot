@@ -15,6 +15,7 @@ async def bot_echo(message: types.Message):
 
 async def bot_echo_all(message: types.Message, state: FSMContext):
     state_name = await state.get_state()
+    print(message.contact)
     text = [
         f'Эхо в состоянии {hcode(state_name)}',
         'Содержание сообщения:',
