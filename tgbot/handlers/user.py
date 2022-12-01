@@ -36,7 +36,7 @@ async def user_start(message: Message):
             user = dict(await db.select_user(id=int(args)))
             await message.answer(f"Сизни ушбу ботга <a href='tg://user?id={args}'>{user['full_name']}</a> таклиф қилди!")
             await message.answer(
-                "'📲 Рақамни юбориш' тугмасини босган ҳолда рақамингизни юборинг!", 
+                "📲 Ro‘yxatdan o‘tish uchun telefon raqamingizni yuboring!", 
                 reply_markup=phone
             )
             try:
@@ -48,7 +48,7 @@ async def user_start(message: Message):
                 print(e)
         else:
             await message.answer(
-                "'📲 Рақамни юбориш' тугмасини босган ҳолда рақамингизни юборинг!", 
+                "'📲 Ro‘yxatdan o‘tish uchun telefon raqamingizni yuboring!", 
                 reply_markup=phone
             )
     except:
@@ -60,7 +60,7 @@ async def user_start(message: Message):
             )
         else:
             await message.answer(
-                "'📲 Рақамни юбориш' тугмасини босган ҳолда рақамингизни юборинг!", 
+                "📲 Ro‘yxatdan o‘tish uchun telefon raqamingizni yuboring!", 
                 reply_markup=phone
             )
 
@@ -85,19 +85,19 @@ async def verify_phone_number(message: Message):
         await message.answer(text=intro, reply_markup=menu)
         await message.answer(text=sign_up)
     else:
-        await message.answer("Илтимос, '📲 Рақамни юбориш' тугмасини босган ҳолда рақамингизни юборинг!", reply_markup=phone)
+        await message.answer("📲 Ro‘yxatdan o‘tish uchun telefon raqamingizni yuboring!", reply_markup=phone)
 
 
 async def join_comp(message: Message):
-    text = "Балл тўплаш учун сизга бериладиган реферал (махсус) линк орқали одам таклиф қилишингиз керак бўлади."
-    text+= "Таклиф этилган ҳар бир одам учун <b>5 балл</b> берилади"
+    text = "Балл тўплаш учун сизга қуйидаги тақдим этилган реферал (махсус) линк орқали одам таклиф қилишингиз керак бўлади."
+    text+= "Таклиф қилинган ҳар бир одам учун <b>5 балл</b> берилади"
 
     await message.answer(text=text, reply_markup=ref_link_button)
 
 
 async def generate_depp_link(call: CallbackQuery):
-    text = "<b>Энг сара 10 та совринлардан бирини ютиб олишни истайсизми?"
-    text += "Унда «IT Masters» ҳамда «Excel Hacks» ҳамкорлигида ташкил этилган танловда қатнашиб, омадингизни синаб кўринг!\n\n"
+    text = "<b>10 та ноутбук, 10 та планшет, 500 минг, 300 минг ва 100 минг сўмлик пул мукофотларидан бирини қўлга киритишни истайсизми?"
+    text += "Унда мазкур танловда қатнашинг ва ғолиб бўлинг. Ютиш жуда осон!\n\n"
     text += "Танловда иштирок этиш учун 👇</b>"
     link = await get_start_link(call.from_user.id)
     text += link
