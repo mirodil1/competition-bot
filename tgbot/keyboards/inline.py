@@ -9,11 +9,10 @@ config = load_config(".env")
 bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
 
 
-
 ref_link_button = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text="👤Одам таклиф қилиб балл тўплаш", callback_data="join")
+            InlineKeyboardButton(text="👤 Odam taklif qilib ball to‘plash", callback_data="join")
         ]
     ]
 )
@@ -33,7 +32,7 @@ async def subscription_button(user, channels):
                 InlineKeyboardButton(text="{title}".format(title=channel.title), url=channel['invite_link'])
             )
     markup.insert(
-        InlineKeyboardButton(text="✅ Обуна бўлдим", callback_data="check_subs")
+        InlineKeyboardButton(text="✅ A’zo bo‘ldim", callback_data="check_subs")
     )
     return markup
 

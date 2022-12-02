@@ -21,10 +21,10 @@ class CheckSubscriptionMiddleware(BaseMiddleware):
                     status = await check(user_id=user_id, channel=channel['username'])
                     final_status *= status
                 if final_status:
-                    await update.callback_query.message.edit_text(text="Қуйидаги  менюдан керакли бўлимни танланг 👇")
+                    await update.callback_query.message.edit_text(text="Quyidagi menyudan kerakli bo'limni tanlang 👇")
                     return
                 else:
-                    await update.callback_query.answer(text="1-босқич. Ботдан тўлиқ фойдаланиш учун қуйидаги каналларга обуна бўлиш тавсия этилади.", show_alert=True)
+                    await update.callback_query.answer(text="Botdan to‘liq foydalanish uchun quyidagi kanallarga obuna bo‘lish tavsiya etiladi.", show_alert=True)
                     
         elif update.message:
             user_id = update.message.from_user.id
@@ -38,7 +38,7 @@ class CheckSubscriptionMiddleware(BaseMiddleware):
                 final_status *= status
             if not final_status:
                 try:
-                    await update.message.answer(text="1-босқич. Ботдан тўлиқ фойдаланиш учун қуйидаги каналларга обуна бўлиш тавсия этилади.", disable_web_page_preview=True, reply_markup=await subscription_button(user_id, channels))
+                    await update.message.answer(text="Botdan to‘liq foydalanish uchun quyidagi kanallarga obuna bo‘lish tavsiya etiladi.", disable_web_page_preview=True, reply_markup=await subscription_button(user_id, channels))
                     raise CancelHandler()
                 except:
                     # await update.callback_query.message.answer(text="Ботдан тўлиқ фойдаланиш учун қуйидаги каналларга обуна бўлинг.", disable_web_page_preview=True, reply_markup=await subscription_button(user_id, channels))

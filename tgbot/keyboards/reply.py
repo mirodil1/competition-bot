@@ -3,7 +3,7 @@ from aiogram .types import ReplyKeyboardMarkup, KeyboardButton
 phone = ReplyKeyboardMarkup(
     keyboard = [
         [
-            KeyboardButton(text="📲 Рақамни юбориш", request_contact=True)
+            KeyboardButton(text="📲 Raqamni yuborish", request_contact=True)
         ]
     ],
     resize_keyboard=True
@@ -12,11 +12,11 @@ phone = ReplyKeyboardMarkup(
 menu = ReplyKeyboardMarkup(
     keyboard = [
         [
-            KeyboardButton(text="🎁 ТАНЛОВДА ИШТИРОК ЭТИШ")
+            KeyboardButton(text="➡️ TANLOVDA ISHTIROK ETISH")
         ],
         [
-            KeyboardButton(text="📊 Рейтинг"),
-            KeyboardButton(text="📝 Шартлар")
+            KeyboardButton(text="🔢 Reyting"),
+            KeyboardButton(text="ℹ️ Ma’lumot")
         ]
     ],
     resize_keyboard=True
